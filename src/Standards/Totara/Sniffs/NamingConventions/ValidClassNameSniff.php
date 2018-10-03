@@ -59,7 +59,6 @@ class ValidClassNameSniff implements Sniff
         $name = trim($tokens[$className]['content']);
         $errorData = [ucfirst($tokens[$stackPtr]['content'])];
 
-        // Make sure the first letter is a capital.
         if (preg_match('/^[a-z][a-z0-9_]+$/', $name) === 0) {
             $error = '%s name must contain only lower case letters, numbers and underscores, starting with a letter';
             $phpcsFile->addError($error, $stackPtr, 'LowerCaseUnderscores', $errorData);

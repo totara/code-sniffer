@@ -22,9 +22,9 @@
 
 namespace TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions;
 
-use TotaraCodeSniffer\Standards\Totara\Tests\BaseSniffUnitTest;
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
-class ValidClassNameUnitTest extends BaseSniffUnitTest
+class ValidClassNameUnitTest extends AbstractSniffUnitTest
 {
 
     /**
