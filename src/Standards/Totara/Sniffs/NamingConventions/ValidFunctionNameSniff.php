@@ -26,7 +26,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\AbstractScopeSniff;
 use PHP_CodeSniffer\Util\Tokens;
 
-class LowerCaseFunctionNameSniff extends AbstractScopeSniff
+class ValidFunctionNameSniff extends AbstractScopeSniff
 {
 
     /**
@@ -147,7 +147,7 @@ class LowerCaseFunctionNameSniff extends AbstractScopeSniff
         }
 
         $methodProps = $phpcsFile->getMethodProperties($stackPtr);
-        if (preg_match('/^[a-z][a-z0-9_]+$/', $methodName) === 0) {
+        if (preg_match('/^[a-z][a-z0-9_]*$/', $methodName) === 0) {
             if ($methodProps['scope_specified'] === true) {
                 $error = '%s method name "%s" must contain only lower case letters, numbers and underscores, starting with a letter';
                 $data = [
@@ -213,7 +213,7 @@ class LowerCaseFunctionNameSniff extends AbstractScopeSniff
             return;
         }
 
-        if (preg_match('/^[a-z][a-z0-9_]+$/', $functionName) === 0) {
+        if (preg_match('/^[a-z][a-z0-9_]*$/', $functionName) === 0) {
             $error = 'Function name "%s" must contain only lower case letters, numbers and underscores, starting with a letter';
             $phpcsFile->addError($error, $stackPtr, 'LowerCaseUnderscores', $errorData);
             $phpcsFile->recordMetric($stackPtr, 'lower_case function name', 'no');

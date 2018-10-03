@@ -24,7 +24,7 @@ namespace TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
-class LowerCaseFunctionNameUnitTest extends AbstractSniffUnitTest
+class ValidFunctionNameUnitTest extends AbstractSniffUnitTest
 {
 
     /**

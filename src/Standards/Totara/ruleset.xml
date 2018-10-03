@@ -98,7 +98,7 @@
         <message>Method name "%s" must not be prefixed with an underscore to indicate visibility</message>
     </rule>
 
-    <rule ref="Totara.NamingConventions.LowerCaseFunctionName"/>
+    <rule ref="Totara.NamingConventions.ValidFunctionName"/>
 
     <!-- Opening brace of a function must be on the same line as the function declaration. -->
     <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
