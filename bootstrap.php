@@ -23,6 +23,7 @@
 
 use TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions\LowerCaseFunctionNameUnitTest;
 use TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions\ValidClassNameUnitTest;
+use TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions\ValidVariableNameUnitTest;
 
 require 'vendor/autoload.php';
 
@@ -31,11 +32,13 @@ $GLOBALS['PHP_CODESNIFFER_TEST_DIRS'] = [];
 
 $GLOBALS['PHP_CODESNIFFER_STANDARD_DIRS'] = [
     ValidClassNameUnitTest::class => __DIR__.'/src/Standards/Totara/',
-    LowerCaseFunctionNameUnitTest::class => __DIR__.'/src/Standards/Totara/'
+    LowerCaseFunctionNameUnitTest::class => __DIR__.'/src/Standards/Totara/',
+    ValidVariableNameUnitTest::class => __DIR__.'/src/Standards/Totara/',
 ];
 $GLOBALS['PHP_CODESNIFFER_TEST_DIRS'] = [
     ValidClassNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/',
-    LowerCaseFunctionNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/'
+    LowerCaseFunctionNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/',
+    ValidVariableNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/',
 ];
 
 $GLOBALS['PHP_CODESNIFFER_SNIFF_CODES']   = [];

@@ -114,4 +114,8 @@
     <!-- Short form of type keywords MUST be used i.e. bool instead of boolean, int instead of integer etc. -->
     <rule ref="PSR12.Keywords.ShortFormTypeKeywords"/>
 
- </ruleset>
+    <!-- 6 Variables -->
+
+    <rule ref="Totara.NamingConventions.ValidVariableName"/>
+
+</ruleset>
