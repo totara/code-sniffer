@@ -61,6 +61,7 @@
 
     <!-- 4.1 Class declaration/instantiation -->
 
+    <!-- TODO Check opening brace rule, doesn't seem to work  -->
     <rule ref="Generic.Classes.OpeningBraceSameLine"/>
     <rule ref="Totara.NamingConventions.ValidClassName"/>
 
@@ -82,7 +83,9 @@
     <!-- Property names MUST NOT be prefixed with a single underscore to indicate protected or private visibility. -->
     <rule ref="PSR2.Classes.PropertyDeclaration"/>
 
-    <!-- 4.4 Properties-->
+    <!-- 4.4 Methods/Functions -->
+
+    <!-- TODO Add spacing rules for function calls and declarations -->
 
     <!-- Visibility MUST be declared on all methods. -->
     <rule ref="Squiz.Scope.MethodScope"/>

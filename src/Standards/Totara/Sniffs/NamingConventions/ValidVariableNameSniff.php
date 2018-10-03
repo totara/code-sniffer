@@ -43,6 +43,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
         $varName = ltrim($tokens[$stackPtr]['content'], '$');
 
         // If it's a php reserved var, then its ok.
+        // TODO Add more reserved words like DB, CFG, etc.
         if (isset($this->phpReservedVars[$varName]) === true) {
             return;
         }
