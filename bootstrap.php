@@ -21,25 +21,44 @@
  * @package totara_userstatus
  */
 
-use TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions\LowerCaseFunctionNameUnitTest;
-use TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions\ValidClassNameUnitTest;
-use TotaraCodeSniffer\Standards\Totara\Tests\NamingConventions\ValidVariableNameUnitTest;
-
 require 'vendor/autoload.php';
 
 $GLOBALS['PHP_CODESNIFFER_STANDARD_DIRS'] = [];
 $GLOBALS['PHP_CODESNIFFER_TEST_DIRS'] = [];
 
-$GLOBALS['PHP_CODESNIFFER_STANDARD_DIRS'] = [
-    ValidClassNameUnitTest::class => __DIR__.'/src/Standards/Totara/',
-    LowerCaseFunctionNameUnitTest::class => __DIR__.'/src/Standards/Totara/',
-    ValidVariableNameUnitTest::class => __DIR__.'/src/Standards/Totara/',
-];
-$GLOBALS['PHP_CODESNIFFER_TEST_DIRS'] = [
-    ValidClassNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/',
-    LowerCaseFunctionNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/',
-    ValidVariableNameUnitTest::class => __DIR__.'/src/Standards/Totara/Tests/',
-];
+$testNamespaceBase = 'TotaraCodeSniffer\Standards\Totara\Tests';
+$srcPath = __DIR__.'/src/Standards/Totara/';
+$testPath = __DIR__.'/src/Standards/Totara/Tests/';
+
+$testClasses = [];
+
+// Dynamically determine the class names for our test files.
+// This is needed for the CodeSniffer unit tests.
+
+$allTestFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($testPath));
+$testFiles = new RegexIterator($allTestFiles, '/Test\.php$/');
+
+foreach ($testFiles as $testFile) {
+    $namespaceName = '';
+    $className = '';
+    $tokenStream = new PHP_Token_Stream($testFile->getPathname());
+    foreach ($tokenStream as $token) {
+        if ($token instanceof PHP_Token_NAMESPACE) {
+            $namespaceName = $token->getName();
+        }
+        if ($token instanceof PHP_Token_CLASS) {
+            $className = $token->getName();
+        }
+    }
+    if (strpos($namespaceName, $testNamespaceBase) !== false) {
+        $testClasses[] = "{$namespaceName}\\{$className}";
+    }
+}
+
+foreach ($testClasses as $class) {
+    $GLOBALS['PHP_CODESNIFFER_STANDARD_DIRS'][$class] = $srcPath;
+    $GLOBALS['PHP_CODESNIFFER_TEST_DIRS'][$class] = $testPath;
+}
 
 $GLOBALS['PHP_CODESNIFFER_SNIFF_CODES']   = [];
 $GLOBALS['PHP_CODESNIFFER_FIXABLE_CODES'] = [];
