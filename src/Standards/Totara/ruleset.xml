@@ -61,7 +61,6 @@
 
     <!-- 4.1 Class declaration/instantiation -->
 
-    <!-- TODO Check opening brace rule, doesn't seem to work  -->
     <rule ref="Generic.Classes.OpeningBraceSameLine"/>
     <rule ref="Totara.NamingConventions.ValidClassName"/>
 
