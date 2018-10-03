@@ -28,6 +28,28 @@ use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 class ValidVariableNameSniff extends AbstractVariableSniff
 {
 
+    protected $totaraReservedWords = [
+        'DB' => true,
+        'CFG' => true,
+        'OUTPUT' => true,
+        'PAGE' => true,
+        'USER' => true,
+        'ADMIN' => true,
+        'COMP_AGGREGATION' => true,
+        'COURSE' => true,
+        'SITE' => true,
+        'SESSION' => true,
+        'TOTARA' => true,
+        'COHORT_VISIBILITY' => true,
+        'COHORT_ASSN_VALUES' => true,
+        'COHORT_ASSN_ITEMTYPES' => true,
+        'COHORT_ALERT' => true,
+        'FILEPICKER_OPTIONS' => true,
+        'TOTARA_COURSE_TYPES' => true,
+        'XMLDB' => true,
+        'TEXTAREA_OPTIONS' => true,
+    ];
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -42,9 +64,8 @@ class ValidVariableNameSniff extends AbstractVariableSniff
         $tokens = $phpcsFile->getTokens();
         $varName = ltrim($tokens[$stackPtr]['content'], '$');
 
-        // If it's a php reserved var, then its ok.
-        // TODO Add more reserved words like DB, CFG, etc.
-        if (isset($this->phpReservedVars[$varName]) === true) {
+        // If it's a reserved var, then its ok.
+        if (isset($this->phpReservedVars[$varName]) || isset($this->totaraReservedWords[$varName])) {
             return;
         }
 
@@ -59,7 +80,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
                 if ($tokens[$bracket]['code'] !== T_OPEN_PARENTHESIS) {
                     $objVarName = $tokens[$var]['content'];
 
-                    if (preg_match('/^[a-z][a-z0-9_]+$/', $objVarName) === 0) {
+                    if (preg_match('/^[a-z][a-z0-9_]*$/', $objVarName) === 0) {
                         $data = [$objVarName];
                         $error = 'Variable "%s" must contain only lower case letters, numbers and underscores, starting with a letter';
                         $phpcsFile->addError($error, $stackPtr, 'LowerCaseUnderscores', $data);
@@ -68,7 +89,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
             }
         }
 
-        if (preg_match('/^[a-z][a-z0-9_]+$/', $varName) === 0) {
+        if (preg_match('/^[a-z][a-z0-9_]*$/', $varName) === 0) {
             $data = [$varName];
             $error = 'Variable "%s" must contain only lower case letters, numbers and underscores, starting with a letter';
             $phpcsFile->addError($error, $stackPtr, 'LowerCaseUnderscores', $data);
@@ -94,7 +115,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
             return;
         }
 
-        if (preg_match('/^[a-z][a-z0-9_]+$/', $varName) === 0) {
+        if (preg_match('/^[a-z][a-z0-9_]*$/', $varName) === 0) {
             $data = [$varName];
             $error = 'Member variable "%s" must contain only lower case letters, numbers and underscores, starting with a letter';
             $phpcsFile->addError($error, $stackPtr, 'LowerCaseUnderscores', $data);
@@ -120,12 +141,12 @@ class ValidVariableNameSniff extends AbstractVariableSniff
             $matches
         ) !== 0) {
             foreach ($matches[1] as $varName) {
-                // If it's a php reserved var, then its ok.
-                if (isset($this->phpReservedVars[$varName]) === true) {
-                    continue;
+                // If it's a reserved var, then its ok.
+                if (isset($this->phpReservedVars[$varName]) || isset($this->totaraReservedWords[$varName])) {
+                    return;
                 }
 
-                if (preg_match('/^[a-z][a-z0-9_]+$/', $varName) === 0) {
+                if (preg_match('/^[a-z][a-z0-9_]*$/', $varName) === 0) {
                     $data = [$varName];
                     $error = 'Variable "%s" must contain only lower case letters, numbers and underscores, starting with a letter';
                     $phpcsFile->addError($error, $stackPtr, 'LowerCaseUnderscores', $data);
