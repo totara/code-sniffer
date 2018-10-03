@@ -118,4 +118,10 @@
 
     <rule ref="Totara.NamingConventions.ValidVariableName"/>
 
+    <!-- 8 Control Structures -->
+
+    <!-- 8.1 if/else if/else-->
+
+    <rule ref="Totara.ControlStructures.ElseIfDeclaration"/>
+
 </ruleset>
