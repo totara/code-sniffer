@@ -1,4 +1,17 @@
 {
+    "name": "totara/codesniffer",
+    "description": "PHP Code Sniffer standard for Totara Coding Style.",
+    "type": "project",
+    "keywords": [
+        "phpcs",
+        "standards",
+        "totara"
+    ],
+    "homepage": "https://git.totaralearning.com/projects/GENERAL/repos/code-sniffer/browse",
+    "license": "BSD-3-Clause",
+    "authors": [
+        { "name": "Fabian Derschatta" }
+    ],
     "require": {
         "squizlabs/php_codesniffer": "3.*"
     },
