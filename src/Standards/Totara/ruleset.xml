@@ -105,6 +105,18 @@
     <!-- closing brace of a function goes directly after the body. -->
     <rule ref="PSR2.Methods.FunctionClosingBrace"/>
 
+    <rule ref="Totara.Functions.FunctionDeclaration"/>
+    <rule ref="Totara.Functions.FunctionDeclaration.CloseBracketLine">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Totara.Functions.FunctionDeclaration.Indent">
+        <severity>0</severity>
+    </rule>
+
+
+    <!-- Additional rule to check function calls -->
+    <rule ref="PEAR.Functions.FunctionCallSignature"/>
+
     <!-- 5 Keywords and Types -->
 
     <!-- All PHP reserved keywords and types [1][2] MUST be in lower case.
@@ -119,6 +131,17 @@
     <!-- 6 Variables -->
 
     <rule ref="Totara.NamingConventions.ValidVariableName"/>
+
+    <!-- 7 Arrays -->
+
+    <!-- 7.1 Wrapping -->
+
+    <rule ref="Generic.Arrays.ArrayIndent"/>
+
+    <!-- 7.2 Separator -->
+
+    <rule ref="Totara.Arrays.ArrayDeclaration"/>
+
 
     <!-- 8 Control Structures -->
 
