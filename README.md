@@ -18,8 +18,8 @@ In the root of the project run:
 # If needed, change "composer" to the composer executable on your machine.
 composer install --no-dev
 
-# add the standard
-vendor/bin/phpcs --config-set installed_paths src/Standards
+# add the standard, use full path to the standard folder
+vendor/bin/phpcs --config-set installed_paths /full/path/to/src/Standards
 
 # Now check what standards PHPCS can use…
 vendor/bin/phpcs -i
