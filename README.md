@@ -13,9 +13,35 @@ Clone this repository into a folder of your choice.
 
 In the root of the project run:
  
-`composer install` 
+```
+# Install composer packages (--dev is only required for running phpunit)
+# If needed, change "composer" to the composer executable on your machine.
+composer install --no-dev
+
+# add the standard
+vendor/bin/phpcs --config-set installed_paths src/Standards
+
+# Now check what standards PHPCS can use…
+vendor/bin/phpcs -i
+
+# should output something like
+The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR12 and Totara
+```
  
-If needed, change "composer" to the composer executable on your machine.
+Optionally you can add phpcs to your path:
+
+```
+# Add this to your ~/.bash_profile or ~/.profile
+# (Replace /path/to/this/project/ with the actual one on your machine)
+export PATH="$PATH:/path/to/this/project/vendor/bin"
+
+# don't forget to either do
+source ~/.bash_profile
+# or 
+source ~/.profile
+
+# or start a new shell
+```
 
 ## Usage
 
@@ -24,10 +50,13 @@ If needed, change "composer" to the composer executable on your machine.
 To run Code Sniffer using the Totara Standard on the console 
 
 ```
-vendor/bin/phpcs --standard=src/Standards/Totara/ruleset.xml [--extensions=php,js] [folder_or_file_to_check]
+vendor/bin/phpcs --standard=Totara [--extensions=php,js] [folder_or_file_to_check]
 
 # Example:
-vendor/bin/phpcs --standard=src/Standards/Totara/ruleset.xml --extensions=php /path/to/your/project/classes/[MyClassToCheck.php]
+vendor/bin/phpcs --standard=Totara --extensions=php /path/to/your/project/classes/[MyClassToCheck.php]
+
+# or if you've added phpcs to your path
+phpcs --standard=Totara --extensions=php classes/[MyClassToCheck.php]
 ```
 
 As some Sniffs can also check JavaScript files you might want to limit the extensions to one of the two.
