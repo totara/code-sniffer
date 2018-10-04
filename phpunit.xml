@@ -12,7 +12,7 @@
 
     <testsuites>
         <testsuite name="totara_codesniffer_tests">
-            <directory suffix="Test.php">src/Standards/Totara/Tests</directory>
+            <directory suffix="Test.php">tests/Standards/Totara</directory>
         </testsuite>
     </testsuites>
 

@@ -20,11 +20,11 @@
  * @author Fabian Derschatta <fabian.derschatta@totaralearning.com>
  */
 
-namespace TotaraCodeSniffer\Standards\Totara\Tests\Arrays;
+namespace TotaraCodeSniffer\Standards\Totara\Sniffs\Operators;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
-class ArrayDeclarationUnitTest extends AbstractSniffUnitTest
+class OperatorSpacingUnitTest extends AbstractSniffUnitTest
 {
 
     /**
@@ -33,43 +33,32 @@ class ArrayDeclarationUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @param string $testFile The name of the file being tested.
-     *
      * @return array<int, int>
      */
-    public function getErrorList($testFile = '')
+    public function getErrorList()
     {
-        switch ($testFile) {
-            case 'ArrayDeclarationUnitTest.1.inc':
-                return [
-                    7 => 1,
-                    9 => 1,
-                    20 => 1,
-                    31 => 1,
-                    37 => 1,
-                    38 => 2,
-                    39 => 2,
-                    44 => 1,
-                    46 => 6,
-                    47 => 2,
-                    49 => 2,
-                    50 => 4,
-                    53 => 2,
-                ];
-            case 'ArrayDeclarationUnitTest.2.inc':
-                return [
-                    27 => 1,
-                    28 => 2,
-                    29 => 2,
-                    34 => 6,
-                    35 => 2,
-                    37 => 2,
-                    38 => 4,
-                    41 => 2,
-                ];
-            default:
-                return [];
-        }
+        return [
+            2 => 1,
+            3 => 2,
+            4 => 1,
+            5 => 2,
+            6 => 2,
+            9 => 3,
+            10 => 2,
+            11 => 3,
+            13 => 3,
+            14 => 2,
+            18 => 1,
+            20 => 1,
+            22 => 2,
+            23 => 2,
+            26 => 1,
+            37 => 4,
+            39 => 1,
+            40 => 1,
+            44 => 2,
+            47 => 2,
+        ];
     }
 
     /**

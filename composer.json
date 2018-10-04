@@ -9,5 +9,10 @@
         "psr-4": {
             "TotaraCodeSniffer\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TotaraCodeSniffer\\": "tests/"
+        }
     }
 }
