@@ -5,7 +5,7 @@
  * @license   https://git.totaralearning.com/projects/GENERAL/repos/code-sniffer/browse/licence.txt BSD Licence
  */
 
-namespace TotaraCodeSniffer\Standards\Totara\Sniffs\Operators;
+namespace Totara\CodeSniffer\Standards\Totara\Sniffs\Operators;
 
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\Operators\OperatorSpacingSniff as PSR12OperatorSpacingSniff;
 use PHP_CodeSniffer\Util\Tokens;

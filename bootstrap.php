@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
 $GLOBALS['PHP_CODESNIFFER_STANDARD_DIRS'] = [];
 $GLOBALS['PHP_CODESNIFFER_TEST_DIRS'] = [];
 
-$testNamespaceBase = 'TotaraCodeSniffer\Standards\Totara\Sniffs';
+$testNamespaceBase = 'Totara\CodeSniffer\Standards\Totara\Sniffs';
 $srcPath = __DIR__.'/src/Standards/Totara/';
 $testPath = __DIR__.'/tests/Standards/Totara/Sniffs/';
 

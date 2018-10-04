@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "TotaraCodeSniffer\\": "src/"
+            "Totara\\CodeSniffer\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "TotaraCodeSniffer\\": "tests/"
+            "Totara\\CodeSniffer\\": "tests/"
         }
     }
 }

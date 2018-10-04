@@ -5,7 +5,7 @@
  * @license   https://git.totaralearning.com/projects/GENERAL/repos/code-sniffer/browse/licence.txt BSD Licence
  */
 
-namespace TotaraCodeSniffer\Standards\Totara\Sniffs\NamingConventions;
+namespace Totara\CodeSniffer\Standards\Totara\Sniffs\NamingConventions;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;

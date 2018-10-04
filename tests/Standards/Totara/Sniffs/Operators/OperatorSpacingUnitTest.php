@@ -5,7 +5,7 @@
  * @license   https://git.totaralearning.com/projects/GENERAL/repos/code-sniffer/browse/licence.txt BSD Licence
  */
 
-namespace TotaraCodeSniffer\Standards\Totara\Sniffs\Operators;
+namespace Totara\CodeSniffer\Standards\Totara\Sniffs\Operators;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
