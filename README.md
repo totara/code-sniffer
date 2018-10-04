@@ -4,7 +4,7 @@ This project contains a Code Sniffer Standard for Totara Learn.
 
 ## Prerequisites
 
- * PHP 7.1 or higher
+ * PHP 5.6 or higher
  * Composer (https://getcomposer.org/)
 
 ## Installation
