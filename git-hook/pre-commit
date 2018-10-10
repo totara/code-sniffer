@@ -3,8 +3,6 @@
 #
 # based on https://github.com/s0enke/git-hooks
 
-# @author Soenke Ruempler <soenke@ruempler.eu>
-# @author Sebastian Kaspari <s.kaspari@googlemail.com>
 # @author Fabian Derschatta <fabian.derschatta@gtotaralearning.com>
 #
 # see the README
@@ -15,11 +13,14 @@ PROJECTPATH=$(cd $SCRIPTPATH && cd ..; pwd -P)
 
 # Set some defaults
 PHPCS_BIN=$PROJECTPATH/vendor/bin/phpcs
+DIFFFILTER_BIN=$PROJECTPATH/vendor/bin/diffFilter
 PHPCS_CODING_STANDARD=$PROJECTPATH/src/Standards/Totara/ruleset.xml
 PHPCS_IGNORE=
 PHPCS_FILE_EXTENSIONS=php
 
-TMP_DIFF_FILE=/tmp/pre-commit-diff.txt
+TMP_DIFF_FILES=/tmp/pre-commit-files.txt
+TMP_DIFF=/tmp/pre-commit-diff.txt
+TMP_JSON=/tmp/pre-commit-phpcs.json
 
 # parse config
 CONFIG_FILE=$SCRIPTPATH/config
@@ -33,24 +34,38 @@ if [ ! -x $PHPCS_BIN ]; then
     exit 1
 fi
 
-# stolen from template file
-if git rev-parse --verify HEAD
-then
+# simple check if code sniffer is set up correctly
+if [ ! -x $PHPCS_BIN ]; then
+    echo "PHP CodeSniffer bin not found or executable -> $PHPCS_BIN"
+    exit 1
+fi
+
+# if changed lines is active we require diffilter
+if [ "$PHPCS_CHANGED_LINES_ONLY" == "1" ]; then
+    if [ ! -x $DIFFFILTER_BIN ]; then
+        echo "Difffilter bin not found or executable -> $DIFFFILTER_BIN"
+        exit 1
+    fi
+fi
+
+# make sure we have a valid HEAD
+COMMIT_HASH=$(git rev-parse --verify HEAD)
+if [ "$COMMIT_HASH" != "" ]; then
     against=HEAD
 else
-    # Initial commit: diff against an empty tree object
-    against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+    echo "Invalid HEAD revision. Exiting."
+    exit 1
 fi
 
 # this is the magic:
 # retrieve all files in staging area that are added, modified or renamed
 # but no deletions etc
 
-git diff-index --name-only --cached --diff-filter=ACMR $against -- > $TMP_DIFF_FILE
+git diff-index --name-only --cached --diff-filter=ACMR $against -- > $TMP_DIFF_FILES
 
 # if file is empty (means no changes) exit successfully
-if [ ! -s $TMP_DIFF_FILE ]; then
-    rm -f $TMP_DIFF_FILE
+if [ ! -s $TMP_DIFF_FILES ]; then
+    rm -f $TMP_DIFF_FILES
     exit 0
 fi
 
@@ -86,12 +101,33 @@ else
     EXTENSIONS=""
 fi
 
-# Run the phpcs command on the changed files
-PHPCS_COMMAND="$PHPCS_BIN -s $IGNORE_WARNINGS --extensions=$EXTENSIONS --standard=$PHPCS_CODING_STANDARD $ENCODING $IGNORE $SNIFFS --file-list=$TMP_DIFF_FILE"
-OUTPUT=$($PHPCS_COMMAND)
+PHPCS_COMMAND="$PHPCS_BIN -s $IGNORE_WARNINGS $REPORT --extensions=$EXTENSIONS --standard=$PHPCS_CODING_STANDARD $ENCODING $IGNORE $SNIFFS --file-list=$TMP_DIFF_FILES"
+
+if [ "$PHPCS_CHANGED_LINES_ONLY" == "1" ]; then
+    git diff HEAD > $TMP_DIFF
+    JSON=$($PHPCS_COMMAND --report=json)
+    echo $JSON > $TMP_JSON
+    RETVAL=$?
+
+    if [ $RETVAL -ne 0 ]; then
+        echo "Error writing phpcs json report to temp dir"
+        rm -f $TMP_DIFF_FILES
+        rm -f $TMP_DIFF
+        exit 1
+    fi
+
+    # diffFilter gives us only the violations for the changed lines
+    OUTPUT="$($DIFFFILTER_BIN --phpcs $TMP_DIFF $TMP_JSON)"
+else
+    # This will give us the violations for the complete content of the changed files
+    OUTPUT=$($PHPCS_COMMAND)
+fi
+
 RETVAL=$?
 
-rm -f $TMP_DIFF_FILE
+rm -f $TMP_DIFF_FILES
+rm -f $TMP_DIFF
+rm -f $TMP_JSON
 
 if [ $RETVAL -ne 0 ]; then
     echo "$OUTPUT" | less

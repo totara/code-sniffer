@@ -2,10 +2,20 @@
 # defaults to phpcs located in vendor dir of this project
 #PHPCS_BIN=/usr/bin/phpcs
 
+# path to diffFilter "binary"
+# defaults to diffFilter located in vendor dir of this project
+#DIFFFILTER_BIN=/usr/bin/diffFilter
+
 # the coding standard, you can also specify a path to your own standard here 
 # e. g. /path/to/my/standard/dir/
 # defaults to path to coding standard within this project
 #PHPCS_CODING_STANDARD=Totara
+
+# if set to 1 only show violations for changed lines only,
+# if set to 0 the complete content of the changed files is checked
+# diffilter package must be installed (composer) and available
+# defaults to 0
+#PHPCS_CHANGED_LINES_ONLY=1
 
 # comma-separated list of file patterns being ignored
 # defaults to empty
