@@ -99,3 +99,9 @@ composer install
 # Then run all tests with:
 vendor/bin/phpunit
 ```
+
+## Git Hook
+
+There is also a pre-commit hook for git to run Code Sniffer on commit.
+
+Check out the [instructions](git-hook) on how to use it.
