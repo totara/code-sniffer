@@ -1,0 +1,29 @@
+# path to phpcs "binary"
+# defaults to phpcs located in vendor dir of this project
+#PHPCS_BIN=/usr/bin/phpcs
+
+# the coding standard, you can also specify a path to your own standard here 
+# e. g. /path/to/my/standard/dir/
+# defaults to path to coding standard within this project
+#PHPCS_CODING_STANDARD=Totara
+
+# comma-separated list of file patterns being ignored
+# defaults to empty
+#PHPCS_IGNORE=
+
+# comma-seperated list of sniffs from the standard that should be used
+# use `phpcs --standard=PSR1 -e` to list sniffs for your standard
+# defaults to empty
+#PHPCS_SNIFFS=Generic.Files.ByteOrderMark,Generic.PHP.DisallowShortOpenTag
+
+# comma separated list of extensions to be checked (js and php are the most common one)
+# defaults to php only
+#PHPCS_FILE_EXTENSIONS="php,js"
+
+# ignore warnings if set to 1
+# defaults to 0
+#PHPCS_IGNORE_WARNINGS=1
+
+# encoding
+# defaults to empty
+#PHPCS_ENCODING=utf-8

@@ -1,0 +1,100 @@
+#!/bin/bash
+# PHP CodeSniffer pre-commit hook for git
+#
+# based on https://github.com/s0enke/git-hooks
+
+# @author Soenke Ruempler <soenke@ruempler.eu>
+# @author Sebastian Kaspari <s.kaspari@googlemail.com>
+# @author Fabian Derschatta <fabian.derschatta@gtotaralearning.com>
+#
+# see the README
+
+# In case we symlinked the hook we want to determine the real path
+SCRIPTPATH="$(dirname $(readlink "$0"))"
+PROJECTPATH=$(cd $SCRIPTPATH && cd ..; pwd -P)
+
+# Set some defaults
+PHPCS_BIN=$PROJECTPATH/vendor/bin/phpcs
+PHPCS_CODING_STANDARD=$PROJECTPATH/src/Standards/Totara/ruleset.xml
+PHPCS_IGNORE=
+PHPCS_FILE_EXTENSIONS=php
+
+TMP_DIFF_FILE=/tmp/pre-commit-diff.txt
+
+# parse config
+CONFIG_FILE=$SCRIPTPATH/config
+if [ -e $CONFIG_FILE ]; then
+    . $CONFIG_FILE
+fi
+
+# simple check if code sniffer is set up correctly
+if [ ! -x $PHPCS_BIN ]; then
+    echo "PHP CodeSniffer bin not found or executable -> $PHPCS_BIN"
+    exit 1
+fi
+
+# stolen from template file
+if git rev-parse --verify HEAD
+then
+    against=HEAD
+else
+    # Initial commit: diff against an empty tree object
+    against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+# this is the magic:
+# retrieve all files in staging area that are added, modified or renamed
+# but no deletions etc
+
+git diff-index --name-only --cached --diff-filter=ACMR $against -- > $TMP_DIFF_FILE
+
+# if file is empty (means no changes) exit successfully
+if [ ! -s $TMP_DIFF_FILE ]; then
+    rm -f $TMP_DIFF_FILE
+    exit 0
+fi
+
+# Set the params for Code Sniffer
+
+if [ "$PHPCS_IGNORE" != "" ]; then
+    IGNORE="--ignore=$PHPCS_IGNORE"
+else
+    IGNORE=""
+fi
+
+if [ "$PHPCS_SNIFFS" != "" ]; then
+    SNIFFS="--sniffs=$PHPCS_SNIFFS"
+else
+    SNIFFS=""
+fi
+
+if [ "$PHPCS_ENCODING" != "" ]; then
+    ENCODING="--encoding=$PHPCS_ENCODING"
+else
+    ENCODING=""
+fi
+
+if [ "$PHPCS_IGNORE_WARNINGS" == "1" ]; then
+    IGNORE_WARNINGS="-n"
+else
+    IGNORE_WARNINGS=""
+fi
+
+if [ "$PHPCS_FILE_EXTENSIONS" != "" ]; then
+    EXTENSIONS="$PHPCS_FILE_EXTENSIONS"
+else
+    EXTENSIONS=""
+fi
+
+# Run the phpcs command on the changed files
+PHPCS_COMMAND="$PHPCS_BIN -s $IGNORE_WARNINGS --extensions=$EXTENSIONS --standard=$PHPCS_CODING_STANDARD $ENCODING $IGNORE $SNIFFS --file-list=$TMP_DIFF_FILE"
+OUTPUT=$($PHPCS_COMMAND)
+RETVAL=$?
+
+rm -f $TMP_DIFF_FILE
+
+if [ $RETVAL -ne 0 ]; then
+    echo "$OUTPUT" | less
+fi
+
+exit $RETVAL
