@@ -38,6 +38,18 @@ class ValidFunctionNameSniff extends AbstractScopeSniff
     ];
 
     /**
+     * A list of custom methods exempt from this rule.
+     *
+     * @var array
+     */
+    protected $customMethods = [
+        // common PHPUnit methods
+        'setUp',
+        'tearDown',
+        'setUpBeforeClass',
+    ];
+
+    /**
      * A list of all PHP non-magic methods starting with a double underscore.
      *
      * These come from PHP modules such as SOAPClient.
@@ -131,6 +143,9 @@ class ValidFunctionNameSniff extends AbstractScopeSniff
             return;
         }
 
+        if (in_array($methodName, $this->customMethods)) {
+            return;
+        }
         $methodProps = $phpcsFile->getMethodProperties($stackPtr);
         if (preg_match('/^[a-z][a-z0-9_]*$/', $methodName) === 0) {
             if ($methodProps['scope_specified'] === true) {
