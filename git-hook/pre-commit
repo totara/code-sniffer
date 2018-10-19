@@ -10,6 +10,9 @@
 # In case we symlinked the hook we want to determine the real path
 SCRIPTPATH="$(dirname $(readlink "$0"))"
 PROJECTPATH=$(cd $SCRIPTPATH && cd ..; pwd -P)
+GIT_PROJECT_PATH="$( cd "$(dirname "$0")" ; cd ../../; pwd -P )"
+GHERKIN_LINT_PATH="$GIT_PROJECT_PATH/node_modules/.bin/gherkin-lint"
+GHERKIN_LINT_CONFIG="$GIT_PROJECT_PATH/.gherkin-lintrc"
 
 # Set some defaults
 PHPCS_BIN=$PROJECTPATH/vendor/bin/phpcs
@@ -17,6 +20,7 @@ DIFFFILTER_BIN=$PROJECTPATH/vendor/bin/diffFilter
 PHPCS_CODING_STANDARD=$PROJECTPATH/src/Standards/Totara/ruleset.xml
 PHPCS_IGNORE=
 PHPCS_FILE_EXTENSIONS=php
+BEHAT_RUN_LINT=1
 
 TMP_DIFF_FILES=/tmp/pre-commit-files.txt
 TMP_DIFF=/tmp/pre-commit-diff.txt
@@ -67,6 +71,20 @@ git diff-index --name-only --cached --diff-filter=ACMR $against -- > $TMP_DIFF_F
 if [ ! -s $TMP_DIFF_FILES ]; then
     rm -f $TMP_DIFF_FILES
     exit 0
+fi
+
+BEHAT_FAILED=0
+if [ "$BEHAT_RUN_LINT" == "1" ] && [ -e $GHERKIN_LINT_PATH ] && [ -e $GHERKIN_LINT_CONFIG ]; then
+    BEHAT_FILES=$(git diff-index --name-only --cached --diff-filter=ACMR HEAD -- "*.feature")
+    for BEHAT_FILE in $BEHAT_FILES
+    do
+        $GHERKIN_LINT_PATH -c $GHERKIN_LINT_CONFIG $BEHAT_FILE
+        RETVAL=$?
+
+        if [ $RETVAL -ne 0 ]; then
+            BEHAT_FAILED=1
+        fi
+    done
 fi
 
 # Set the params for Code Sniffer
@@ -130,7 +148,11 @@ rm -f $TMP_DIFF
 rm -f $TMP_JSON
 
 if [ $RETVAL -ne 0 ]; then
-    echo "$OUTPUT" | less
+    echo "$OUTPUT"
+fi
+
+if [ $BEHAT_FAILED == 1 ]; then
+    exit 1
 fi
 
 exit $RETVAL

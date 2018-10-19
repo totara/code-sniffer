@@ -37,3 +37,9 @@
 # encoding
 # defaults to empty
 #PHPCS_ENCODING=utf-8
+
+# Run behat lint on every commit
+# only checks changed behat files
+# only works if npm and grunt is installed
+# defaults to 1
+#BEHAT_RUN_LINT=0
