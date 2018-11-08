@@ -33,6 +33,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
         'TOTARA_COURSE_TYPES' => true,
         'XMLDB' => true,
         'TEXTAREA_OPTIONS' => true,
+        'TOTARAMENU' => true
     ];
 
     /**
