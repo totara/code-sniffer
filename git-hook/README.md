@@ -29,3 +29,9 @@ By default the hook is configured to run PHP Code Sniffer on the full content of
 To achieve this we make use of the [coverageChecker project](https://github.com/exussum12/coverageChecker) as PHP Code Sniffer is not capable of doing it itself. The needed dependency is installed with composer along with Code Sniffer.
 
 Please note that the output of PHP Code Sniffer and the coverageChecker differ. It is not possible to unify the output at the moment.
+
+## Behat file linting
+
+By default the hook also runs the "_gherkinlint_" grunt task (if it is installed) on the changed files. So if you have any new or modified .feature files in your commit the hook won't let you commit unless you have fixed those linting issues.
+
+To disable this check you can set `BEHAT_RUN_LINT=0` in your config file.
