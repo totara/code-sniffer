@@ -14,27 +14,26 @@ class ValidVariableNameSniff extends AbstractVariableSniff
 {
 
     protected $totaraReservedWords = [
-        'DB' => true,
-        'CFG' => true,
-        'OUTPUT' => true,
-        'PAGE' => true,
-        'USER' => true,
         'ADMIN' => true,
-        'COMP_AGGREGATION' => true,
-        'COURSE' => true,
-        'SCRIPT' => true,
-        'SITE' => true,
-        'SESSION' => true,
-        'TOTARA' => true,
-        'COHORT_VISIBILITY' => true,
+        'CFG' => true,
+        'COHORT_ALERT' => true,
         'COHORT_ASSN_VALUES' => true,
         'COHORT_ASSN_ITEMTYPES' => true,
-        'COHORT_ALERT' => true,
+        'COHORT_VISIBILITY' => true,
+        'COMP_AGGREGATION' => true,
+        'COURSE' => true,
+        'DB' => true,
         'FILEPICKER_OPTIONS' => true,
-        'TOTARA_COURSE_TYPES' => true,
-        'XMLDB' => true,
+        'OUTPUT' => true,
+        'PAGE' => true,
+        'SCRIPT' => true,
+        'SESSION' => true,
+        'SITE' => true,
         'TEXTAREA_OPTIONS' => true,
-        'TOTARAMENU' => true
+        'TOTARA_COURSE_TYPES' => true,
+        'TOTARAMENU' => true,
+        'USER' => true,
+        'XMLDB' => true,
     ];
 
     /**
