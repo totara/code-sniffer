@@ -22,6 +22,7 @@ class ValidVariableNameSniff extends AbstractVariableSniff
         'ADMIN' => true,
         'COMP_AGGREGATION' => true,
         'COURSE' => true,
+        'SCRIPT' => true,
         'SITE' => true,
         'SESSION' => true,
         'TOTARA' => true,
