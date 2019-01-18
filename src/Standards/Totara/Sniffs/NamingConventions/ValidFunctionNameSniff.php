@@ -20,21 +20,21 @@ class ValidFunctionNameSniff extends AbstractScopeSniff
      * @var array
      */
     protected $magicMethods = [
-        'construct',
-        'destruct',
         'call',
         'callStatic',
-        'get',
-        'set',
-        'isset',
-        'unset',
-        'sleep',
-        'wakeup',
-        'toString',
-        'set_state',
         'clone',
-        'invoke',
+        'construct',
         'debugInfo',
+        'destruct',
+        'get',
+        'invoke',
+        'isset',
+        'set',
+        'set_state',
+        'sleep',
+        'toString',
+        'unset',
+        'wakeup',
     ];
 
     /**
@@ -43,12 +43,11 @@ class ValidFunctionNameSniff extends AbstractScopeSniff
      * @var array
      */
     protected $customMethods = [
-        // common PHPUnit methods
+        'jsonSerialize',
         'setUp',
-        'tearDown',
         'setUpBeforeClass',
+        'tearDown',
         'tearDownAfterClass',
-        'jsonSerialize'
     ];
 
     /**
@@ -59,17 +58,17 @@ class ValidFunctionNameSniff extends AbstractScopeSniff
      * @var array
      */
     protected $methodsDoubleUnderscore = [
-        'soapCall',
+        'doRequest',
+        'getFunctions',
         'getLastRequest',
         'getLastResponse',
         'getLastRequestHeaders',
         'getLastResponseHeaders',
-        'getFunctions',
         'getTypes',
-        'doRequest',
         'setCookie',
         'setLocation',
         'setSoapheaders',
+        'soapCall',
     ];
 
     /**
