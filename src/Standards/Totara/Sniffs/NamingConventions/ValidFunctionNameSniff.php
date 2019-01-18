@@ -47,6 +47,7 @@ class ValidFunctionNameSniff extends AbstractScopeSniff
         'setUp',
         'tearDown',
         'setUpBeforeClass',
+        'tearDownAfterClass',
         'jsonSerialize'
     ];
 
