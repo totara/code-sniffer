@@ -66,7 +66,7 @@ As some Sniffs can also check JavaScript files you might want to limit the exten
 To set up PHPStorm to automatically check your files and highlight coding style violations directly in the code 
 
  1. Open "Preferences"
- 2. Go to "Languages & Framework" => "PHP" => "Code Sniffer"
+ 2. Go to "Languages & Framework" => "PHP" => "Quality Tools" => "Code Sniffer"
  3. Make sure that in the Configuration the "PHP Code Snifffer path" points to the "vendor/bin/phpcs" file within this project
  4. "Validate" the selection and click "Apply"
  4. Go to "Editor" => "Inspections"
