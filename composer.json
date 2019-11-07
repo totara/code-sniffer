@@ -29,5 +29,9 @@
         "psr-4": {
             "Totara\\CodeSniffer\\": "tests/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths src/Standards",
+        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths src/Standards"
     }
 }

@@ -18,10 +18,8 @@ In the root of the project run:
 # If needed, change "composer" to the composer executable on your machine.
 composer install --no-dev
 
-# add the standard, use full path to the standard folder
-vendor/bin/phpcs --config-set installed_paths /full/path/to/src/Standards
-
-# Now check what standards PHPCS can use…
+# Now check what standards PHPCS can use
+# The new Totara coding standard is automatically set after composer install
 vendor/bin/phpcs -i
 
 # should output something like
