@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <ruleset name="Totara">
     <description>The Totara coding standard.</description>
+
+    <!-- Include compatibility rules -->
+    <rule ref="PHPCompatibility"/>
+
     <arg name="tab-width" value="4"/>
 
     <!-- 2. General -->

@@ -23,7 +23,7 @@ composer install --no-dev
 vendor/bin/phpcs -i
 
 # should output something like
-The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR12 and Totara
+The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR12, Totara and PHPCompatibility
 ```
  
 Optionally you can add phpcs to your path:
@@ -59,6 +59,16 @@ phpcs --standard=Totara --extensions=php classes/[MyClassToCheck.php]
 
 As some Sniffs can also check JavaScript files you might want to limit the extensions to one of the two.
 
+### Default phpcs.xml file
+
+If your project includes a phpcs.xml or phpcs.xml.dist file you can run Code Sniffer from within your project without specifying the standard or any other configuration set in that file.
+
+```
+/path/to/phpcs filesorfoldertocheck
+```
+
+See [PHP Code Sniffer's Advanced Usage docs](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#using-a-default-configuration-file) for more details.
+
 ### PHPStorm
 
 To set up PHPStorm to automatically check your files and highlight coding style violations directly in the code 
@@ -75,6 +85,20 @@ To set up PHPStorm to automatically check your files and highlight coding style 
  9. Click "OK"
  
 That's it. Now all violations should be marked directly within your code view.
+
+### PHPCompatibility
+
+The Totara standard does include the PHPCompatibility standard as well to check for problems on specific versions.
+
+By default the PHPCompatibility rules will check on the PHP version you are running the phpcs command on. To specify a specific version to check either specifcy the version on the console 
+
+```
+# to run all the checks for PHP 7.1, PHP 7.2 and PHP 7.3
+/path/to/phpcs --runtime-set testVersion 7.1-7.3 ...
+```
+or have a "testVersion" configuration option in your phpcs.xml file.
+
+See [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility) for more details.
 
 ## Development
 

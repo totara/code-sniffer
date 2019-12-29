@@ -12,9 +12,11 @@
     "authors": [
         { "name": "Fabian Derschatta" }
     ],
+    "prefer-stable" : true,
     "require": {
         "squizlabs/php_codesniffer": "3.*",
         "exussum12/coverage-checker": "*",
+        "phpcompatibility/php-compatibility": "*",
         "php": ">=5.6.0"
     },
     "require-dev": {
@@ -31,7 +33,7 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths src/Standards",
-        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths src/Standards"
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths $PWD/src/Standards,$PWD/vendor/phpcompatibility/php-compatibility",
+        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths $PWD/src/Standards,$PWD/vendor/phpcompatibility/php-compatibility"
     }
 }
