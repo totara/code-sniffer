@@ -90,7 +90,7 @@ That's it. Now all violations should be marked directly within your code view.
 
 The Totara standard does include the PHPCompatibility standard as well to check for problems on specific versions.
 
-By default the PHPCompatibility rules will check on the PHP version you are running the phpcs command on. To specify a specific version to check either specifcy the version on the console 
+By default the PHPCompatibility rules will check only the PHP version you are running the phpcs command on. To choose a specific version to check either set the version on the console 
 
 ```
 # to run all the checks for PHP 7.1, PHP 7.2 and PHP 7.3
