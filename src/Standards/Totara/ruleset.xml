@@ -3,7 +3,9 @@
     <description>The Totara coding standard.</description>
 
     <!-- Include compatibility rules -->
-    <rule ref="PHPCompatibility"/>
+    <!-- PHPCompatibility does not support PHP 8 so for now disabling it
+         to make sure the Standard can be used without issues on PHP 8 -->
+    <!--    <rule ref="PHPCompatibility"/>-->
 
     <arg name="tab-width" value="4"/>
 
