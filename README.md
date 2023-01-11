@@ -106,6 +106,11 @@ or have a "testVersion" configuration option in your phpcs.xml file.
 
 See [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility) for more details.
 
+**IMPORTANT NOTICE:**
+
+Originally the Totara Standard included the **PHPCompatibility** standard. As PHPCompatibility is not compatible with PHP 8+ it got removed from the Totara Standard. It can still be executed directly via the phpcs command.
+
+
 ## Development
 
 ### Sniffs
@@ -117,6 +122,8 @@ If you create or modify Sniffs within this project make sure you stick to the PS
 ### Testing
 
 If you create or modify Sniffs within this project make sure you create or update unit tests for it.
+
+**NOTE:** The PHPUnit version included is currently not compatible with PHP 8. You need to run the following on PHP 7.4.
 
 To run the unit tests:
 
