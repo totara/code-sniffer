@@ -73,7 +73,7 @@ If your project includes a phpcs.xml or phpcs.xml.dist file you can run Code Sni
 /path/to/phpcs filesorfoldertocheck
 ```
 
-See [PHP Code Sniffer's Advanced Usage docs](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#using-a-default-configuration-file) for more details.
+See [PHP Code Sniffer's Advanced Usage docs](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Advanced-Usage#using-a-default-configuration-file) for more details.
 
 ### PHPStorm
 
