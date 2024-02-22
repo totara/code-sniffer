@@ -47,4 +47,4 @@ foreach ($testClasses as $class) {
 $GLOBALS['PHP_CODESNIFFER_SNIFF_CODES']   = [];
 $GLOBALS['PHP_CODESNIFFER_FIXABLE_CODES'] = [];
 
-require __DIR__.'/vendor/phpcsstandards/php_codesniffer/tests/bootstrap.php';
+require __DIR__.'/vendor/squizlabs/php_codesniffer/tests/bootstrap.php';
