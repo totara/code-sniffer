@@ -14,7 +14,7 @@
     ],
     "prefer-stable" : true,
     "require": {
-        "phpcsstandards/php_codesniffer": "3.*",
+        "squizlabs/php_codesniffer": "3.*",
         "exussum12/coverage-checker": "*",
         "phpcompatibility/php-compatibility": "*",
         "php": ">=5.6.0"
