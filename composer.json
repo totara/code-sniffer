@@ -1,7 +1,7 @@
 {
     "name": "totara/codesniffer",
     "description": "PHP Code Sniffer standard for Totara Coding Style.",
-    "type": "project",
+    "type": "phpcodesniffer-standard",
     "keywords": [
         "phpcs",
         "standards",
