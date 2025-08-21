@@ -17,7 +17,8 @@
         "squizlabs/php_codesniffer": "3.*",
         "exussum12/coverage-checker": "*",
         "phpcompatibility/php-compatibility": "*",
-        "php": ">=5.6.0"
+        "php": ">=5.6.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"
@@ -32,8 +33,9 @@
             "Totara\\CodeSniffer\\": "tests/"
         }
     },
-    "scripts": {
-        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths $PWD/src/Standards,$PWD/vendor/phpcompatibility/php-compatibility",
-        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths $PWD/src/Standards,$PWD/vendor/phpcompatibility/php-compatibility"
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

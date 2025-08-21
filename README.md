@@ -15,6 +15,22 @@ You can still analyse versions of Totara compatible only to version 5.6, as long
 
 ## Installation
 
+### Via Composer
+
+In your project, require this package by running:
+```
+composer require --dev totara/codesniffer
+```
+
+You may be prompted to allow the plugin `dealerdirect/phpcodesniffer-composer-installer` - if so answer yes.
+This will then install the package in the correct location.
+
+Confirm the Totara standards are available by running `./vendor/bin/phpcs -i`.
+> The installed coding standards are MySource, PEAR, PSR1, PSR2, PSR12, Squiz, Zend, PHPCompatibility, PHPCSUtils and Totara
+
+
+### Manual Installation
+
 Clone this repository into a folder of your choice. 
 
 In the root of the project run:
@@ -23,6 +39,9 @@ In the root of the project run:
 # Install composer packages (--dev is only required for running phpunit)
 # If needed, change "composer" to the composer executable on your machine.
 composer install --no-dev
+
+# Update the config path
+vendor/bin/phpcs --config-set installed_paths src/Standards"
 
 # Now check what standards PHPCS can use
 # The new Totara coding standard is automatically set after composer install
