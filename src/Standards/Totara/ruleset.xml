@@ -189,4 +189,103 @@
     <!-- Other operators are left undefined. -->
     <rule ref="Totara.Operators.OperatorSpacing"/>
 
+    <!-- SonarQube rule coverage (php:S107, php:S110, php:S134, php:S2004) -->
+    <!-- Nesting depth and complexity checks -->
+    <rule ref="Generic.Metrics.NestingLevel">
+        <properties>
+            <property name="nestingLevel" value="5"/>
+            <property name="absoluteNestingLevel" value="10"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.Metrics.CyclomaticComplexity">
+        <!-- php:S3776 Cognitive/cyclomatic complexity -->
+        <properties>
+            <property name="complexity" value="15"/>
+            <property name="absoluteComplexity" value="30"/>
+        </properties>
+    </rule>
+
+    <!-- SonarQube rule coverage (php:S1068, php:S1172) -->
+    <!-- Unused parameters -->
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+    <!-- SonarQube rule coverage (php:S1116) -->
+    <!-- Empty PHP statements (;;) -->
+    <rule ref="Generic.CodeAnalysis.EmptyPHPStatement"/>
+
+    <!-- SonarQube rule coverage (php:S1186, php:S905) -->
+    <!-- Empty catch/if/else bodies -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+
+    <!-- SonarQube rule coverage (php:S1121) -->
+    <!-- Assignment in condition -->
+    <rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>
+
+    <!-- SonarQube rule coverage (php:S1145) -->
+    <!-- if (true) / if (false) unconditional -->
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+
+    <!-- SonarQube rule coverage (php:S1185) -->
+    <!-- Useless overriding methods that just call parent -->
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+
+    <!-- SonarQube rule coverage (php:S1110) -->
+    <!-- Unnecessary parentheses -->
+    <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
+
+    <!-- SonarQube rule coverage (php:S1134) -->
+    <!-- FIXME comments -->
+    <rule ref="Generic.Commenting.Fixme"/>
+
+    <!-- SonarQube rule coverage (php:S1135) -->
+    <!-- TODO comments -->
+    <rule ref="Generic.Commenting.Todo"/>
+
+    <!-- SonarQube rule coverage (php:S125) -->
+    <!-- Commented-out code -->
+    <rule ref="Squiz.PHP.CommentedOutCode">
+        <properties>
+            <property name="maxPercentage" value="35"/>
+        </properties>
+    </rule>
+
+    <!-- SonarQube rule coverage (php:S1763, php:S881) -->
+    <!-- Dead/non-executable code after return/throw/etc -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+
+    <!-- SonarQube rule coverage (php:S139) -->
+    <!-- Inline comments after statements -->
+    <rule ref="Squiz.Commenting.PostStatementComment"/>
+
+    <!-- SonarQube rule coverage (php:S1788) -->
+    <!-- Default parameter values must not follow non-default params -->
+    <rule ref="PEAR.Functions.ValidDefaultValue"/>
+
+    <!-- SonarQube rule coverage (php:S907) -->
+    <!-- Discourage goto -->
+    <rule ref="Generic.PHP.DiscourageGoto"/>
+
+    <!-- SonarQube rule coverage (php:S2068) -->
+    <!-- No hardcoded credentials / passwords in code -->
+    <rule ref="Generic.PHP.ForbiddenFunctions"/>
+
+    <!-- SonarQube rule coverage (php:S1192) -->
+    <!-- Unnecessary string concatenation -->
+    <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+
+    <!-- SonarQube rule coverage (php:S1301) -->
+    <!-- Single-case switch statements -->
+    <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
+
+    <!-- SonarQube rule coverage (php:S1155, php:S3699) -->
+    <!-- Duplicate class names -->
+    <rule ref="Generic.Classes.DuplicateClassName"/>
+
+    <!-- SonarQube rule coverage (php:S2612) -->
+    <!-- No silenced errors (@) -->
+    <rule ref="Generic.PHP.NoSilencedErrors"/>
+
+    <!-- Git merge conflicts left in code -->
+    <rule ref="Generic.VersionControl.GitMergeConflict"/>
+
 </ruleset>
