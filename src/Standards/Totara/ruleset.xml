@@ -68,8 +68,7 @@
     <rule ref="Generic.Classes.OpeningBraceSameLine"/>
     <rule ref="Totara.NamingConventions.ValidClassName"/>
 
-    <rule ref="Squiz.CSS.ClassDefinitionOpeningBraceSpace"/>
-    <rule ref="Squiz.CSS.ClassDefinitionClosingBraceSpace"/>
+    <!-- Removed in PHPCS 4: Squiz.CSS.* class brace spacing sniffs. -->
 
     <!-- When instantiating a new class, parenthesis MUST always be present even when there are no arguments passed to the constructor. -->
     <rule ref="PSR12.Classes.ClassInstantiation"/>

@@ -4,7 +4,7 @@ This project contains a Code Sniffer Standard for Totara Learn.
 
 ## Prerequisites
 
- * PHP 7.4 or higher
+ * PHP 7.4 or higher (including PHP 8.4 and 8.5)
  * Composer (https://getcomposer.org/)
 
 ***
@@ -118,8 +118,8 @@ The Totara standard does include the PHPCompatibility standard as well to check 
 By default the PHPCompatibility rules will check only the PHP version you are running the phpcs command on. To choose a specific version to check either set the version on the console 
 
 ```
-# to run all the checks for PHP 7.1, PHP 7.2 and PHP 7.3
-/path/to/phpcs --runtime-set testVersion 7.1-7.3 ...
+# to run all the checks for PHP 8.4 and PHP 8.5
+/path/to/phpcs --runtime-set testVersion 8.4-8.5 ...
 ```
 or have a "testVersion" configuration option in your phpcs.xml file.
 
